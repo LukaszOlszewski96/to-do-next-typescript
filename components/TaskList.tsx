@@ -15,12 +15,11 @@ export const TaskList: FunctionComponent<Props> = ({tasks,onDelete}) =>{
   return(
         <div className="list-box">
             <h3>Task List</h3>
-            {tasks.length == 0 ? "-" : null}
             <ul>
-                {tasks.map((task,_i) =>{
-                    <TaskListItem key={_i} task={task} onDelete={onDelete} />
-                })}
+                {tasks.map((task,index) =>(
+                    <TaskListItem key={index} task={task} onDelete={onDelete} />
+                ))}
             </ul>
         </div>
 
-)}
+)};
