@@ -1,6 +1,8 @@
 import { isTargetLikeServerless } from 'next/dist/server/config';
 import React, { useState } from 'react';
+import { CompletedTaskList } from '../components/CompletedTaskList';
 import {TaskForm} from '../components/TaskForm';
+import { TaskList } from '../components/TaskList';
 import {Task} from '../data/task';
 
 function App() {
@@ -12,7 +14,8 @@ function App() {
     });
 
     const [tasks, setTasks] = useState(new Array<Task>());
-
+    const [completedTasks, setCompletedTasks] = useState(new Array<Task>());
+    const [isCompletedListActive, setCompletedListActive] = useState(false);
 
     const addTask = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -23,7 +26,7 @@ function App() {
             completed:false
         });
         setTasks([...tasks,newTask]);
-    }
+    };
 
     const handleTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setNewTask({
@@ -32,19 +35,50 @@ function App() {
         });
     };
 
+    const deleteTask = (taskToDelete: Task) =>{
+        setTasks([...tasks.filter(task => task.id !== taskToDelete.id)]);
+        setCompletedTasks([...completedTasks, taskToDelete]);
+    };
+    
+    const undoTask = (taskToUndo: Task) => {
+        setCompletedTasks([
+          ...completedTasks.filter(task => task.id !== taskToUndo.id)
+        ]);
+        setTasks([...tasks, taskToUndo]);
+      };
+
+    const completeListActiveElement = (
+        <>
+          <input
+            onChange={() => setCompletedListActive(!isCompletedListActive)}
+            type="checkbox"
+            defaultValue={isCompletedListActive.toString()}
+            id="completedListActive"
+          />
+          <label htmlFor="completedListActive">Show Done Tasks</label>
+        </>
+      );
+
 
     return(
         <div className="container">
             <h1>
                To Do List
             </h1>
-            <TaskForm 
+            <TaskForm
                 disabled={newTask.name.length == 0}
                 task={newTask}
                 onAdd={addTask}
                 onChange={handleTaskChange}/>
+            {completeListActiveElement}
+            <TaskList
+                tasks={tasks}
+                onDelete={deleteTask}/>
+            {isCompletedListActive ? (
+          <CompletedTaskList tasks={completedTasks} onDelete={undoTask} />
+        ) : null}
         </div>
     )
-}
+};
 
 export  default App;
