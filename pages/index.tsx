@@ -62,14 +62,11 @@ function App() {
 
     return(
         <div className="container">
-            <h1>
-               To Do List
+          <div className="line"></div>
+            <h1 className="title">
+               TO DO
             </h1>
-            <TaskForm
-                disabled={newTask.name.length == 0}
-                task={newTask}
-                onAdd={addTask}
-                onChange={handleTaskChange}/>
+            <div className="list-conteiner">
             {completeListActiveElement}
             <TaskList
                 tasks={tasks}
@@ -77,6 +74,12 @@ function App() {
             {isCompletedListActive ? (
           <CompletedTaskList tasks={completedTasks} onDelete={undoTask} />
         ) : null}
+            </div>
+        <TaskForm
+                disabled={newTask.name.length == 0}
+                task={newTask}
+                onAdd={addTask}
+                onChange={handleTaskChange}/>
         </div>
     )
 };

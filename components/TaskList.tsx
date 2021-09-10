@@ -14,7 +14,7 @@ export const TaskList: FunctionComponent<Props> = ({tasks,onDelete}) =>{
 
   return(
         <div className="list-box">
-            <h3>Task List</h3>
+            <h3>Actual</h3>
             <ul>
                 {tasks.map((task,index) =>(
                     <TaskListItem key={index} task={task} onDelete={onDelete} />

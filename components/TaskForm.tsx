@@ -14,8 +14,9 @@ export const TaskForm: FunctionComponent<Props> = ({
     task,
     disabled
 }) => (
-    <form onSubmit={onAdd}>
+
+    <form className="input-form" onSubmit={onAdd}>
         <input onChange={onChange} value={task.name}/>
-        <button disabled={disabled} type="submit"> Add a task </button>
+        <button disabled={disabled} type="submit">Add</button>
     </form>
 )

@@ -21,10 +21,5 @@ export const CompletedTaskList: FunctionComponent<Props> = ({
         ))}
       </ul>
     </div>
-    <style jsx>{`
-      div {
-        min-width: 12em;
-      }
-    `}</style>
   </>
 );
