@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import {Task} from '../data/task';
+import TextField from "@material-ui/core/TextField";
 
 interface Props{
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -11,12 +12,10 @@ interface Props{
 export const TaskForm: FunctionComponent<Props> = ({
     onChange,
     onAdd,
-    task,
-    disabled
+    task
 }) => (
 
     <form className="input-form" onSubmit={onAdd}>
-        <input onChange={onChange} value={task.name}/>
-        <button disabled={disabled} type="submit">Add</button>
+        <TextField className="text-field" variant="outlined" label="New task" onChange={onChange} value={task.name}/>
     </form>
 )

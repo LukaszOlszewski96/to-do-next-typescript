@@ -1,17 +1,11 @@
 .input-form{
-    background-color: turquoise;
-    height: auto;
     width: 100%;
-    margin-top: 1%;
+    height: auto;
     display: flex;
+    margin-top: 3vw;
+    justify-content: center;
 }
-.input-form input{
-    width: 80%;
-    height: 2vw;
-    border: none;
-    border-radius: .5vw;
-    margin: 2% 4% 2% 5%;
+.text-field{
+    width: 30%;
 }
-
-
 

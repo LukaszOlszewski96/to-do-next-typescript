@@ -1,7 +1,8 @@
 import React, {FunctionComponent} from "react";
 import { Task } from "../data/task";
 import { TaskListItem } from "./TaskListItem";
-
+import DeleteIcon from '@material-ui/icons/Delete';
+import { IconButton } from "@material-ui/core";
 
 interface Props {
     tasks: Task[];
@@ -14,12 +15,20 @@ export const TaskList: FunctionComponent<Props> = ({tasks,onDelete}) =>{
 
   return(
         <div className="list-box">
-            <h3>Actual</h3>
             <ul>
                 {tasks.map((task,index) =>(
-                    <TaskListItem key={index} task={task} onDelete={onDelete} />
+                    <>
+                        <div className="task-list-box">
+                            <TaskListItem key={index} task={task} onDelete={onDelete} />
+                            <IconButton aria-label="delete" className="icon-delete-btn" >
+                            <DeleteIcon fontSize="small" />
+                            </IconButton>
+                        </div>
+                    </>
                 ))}
+            
             </ul>
+            
         </div>
 
 )};

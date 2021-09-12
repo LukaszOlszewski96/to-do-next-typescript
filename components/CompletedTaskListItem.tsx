@@ -1,3 +1,4 @@
+import { Checkbox } from "@material-ui/core";
 import React, { FunctionComponent } from "react";
 import { Task } from "../data/task";
 
@@ -17,15 +18,15 @@ export const CompletedTaskListItem: FunctionComponent<Props> = ({
   return (
     <>
       <li>
-        <span className="strike">{task.name}&nbsp;</span>
-        <button onClick={onClick}>X</button>
+        <Checkbox
+          onClick={onClick}
+          defaultChecked
+          indeterminate
+          inputProps={{ 'aria-label': 'indeterminate checkbox' }}
+        />
+      <span className="strike">{task.name}&nbsp;</span>
+        
       </li>
-      <style jsx>{`
-        span {
-          color: green;
-          text-decoration: line-through;
-        }
-      `}</style>
     </>
   );
 };
